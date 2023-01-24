@@ -1,4 +1,4 @@
-﻿namespace NewsSiteScrapper.Data.Migrations
+﻿namespace NewsWebSiteScraper.Data.Migrations
 {
     using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Migrations;

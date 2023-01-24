@@ -1,7 +1,7 @@
-﻿namespace NewsSiteScrapper.Controllers
+﻿namespace NewsWebSiteScraper.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using NewsSiteScrapper.Models;
+    using NewsWebSiteScraper.Models;
     using System.Diagnostics;
 
     public class HomeController : Controller

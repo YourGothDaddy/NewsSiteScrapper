@@ -75,3 +75,8 @@ D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\obj\Debug\net6.
 D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\obj\Debug\net6.0\NewsSiteScrapper.pdb
 D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\obj\Debug\net6.0\NewsSiteScrapper.genruntimeconfig.cache
 D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\obj\Debug\net6.0\ref\NewsSiteScrapper.dll
+D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\selenium-manager\linux\selenium-manager
+D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\selenium-manager\macos\selenium-manager
+D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\selenium-manager\windows\selenium-manager.exe
+D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\WebDriver.dll

@@ -1,4 +1,4 @@
-﻿namespace NewsSiteScrapper.Models.News
+﻿namespace NewsWebSiteScraper.Models.News
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -12,5 +12,7 @@
 
         [Required]
         public string ImageSrc { get; set; }
+
+        public string? iFrame { get; set; }
     }
 }

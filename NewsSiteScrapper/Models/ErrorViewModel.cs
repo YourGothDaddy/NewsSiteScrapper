@@ -1,4 +1,4 @@
-namespace NewsSiteScrapper.Models
+namespace NewsWebSiteScraper.Models
 {
     public class ErrorViewModel
     {

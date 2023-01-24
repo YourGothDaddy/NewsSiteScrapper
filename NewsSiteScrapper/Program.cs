@@ -1,8 +1,9 @@
-namespace NewsSiteScrapper
+namespace NewsWebsiteSiteScraper
 {
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
-    using NewsSiteScrapper.Data;
+    using NewsWebSiteScraper.Services.News;
+    using NewsWebSiteScraper.Data;
 
     public class Program
     {
@@ -12,13 +13,15 @@ namespace NewsSiteScrapper
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            builder.Services.AddDbContext<NewsWebSiteScraperDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<NewsWebSiteScraperDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddSingleton<IHostedService, DunavmostBackgroundScraperService>();
 
             var app = builder.Build();
 

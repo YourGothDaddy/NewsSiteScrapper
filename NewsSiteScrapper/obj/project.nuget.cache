@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EFl4uYKKBh6Abtv2sagoab7RBCDY3DatdJCrDzoXPRLyCOxoq0TO0w0e7DFod9MdvEQIbHfaoAaYvnyjrWf9Kg==",
+  "dgSpecHash": "mY9NpkIDNqrUz4XAZH+VafTKsr4yEeVcdDvJcs5hhHhybq7a6+sXAaN8AUhMetEhuTm01rxxsdg8xtu94VYRDA==",
   "success": true,
-  "projectFilePath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsSiteScrapper.csproj",
+  "projectFilePath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GothDaddy\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -43,6 +43,8 @@
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\GothDaddy\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\GothDaddy\\.nuget\\packages\\selenium.webdriver\\4.7.0\\selenium.webdriver.4.7.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

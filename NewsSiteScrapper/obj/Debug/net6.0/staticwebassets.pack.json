@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\NewsSiteScrapper.bundle.scp.css",
-      "PackagePath": "staticwebassets\\NewsSiteScrapper.bundle.scp.css"
+      "Id": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\NewsWebSiteScraper.bundle.scp.css",
+      "PackagePath": "staticwebassets\\NewsWebSiteScraper.bundle.scp.css"
     },
     {
       "Id": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\wwwroot\\css\\site.css",
@@ -245,20 +245,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.NewsSiteScrapper.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.NewsWebSiteScraper.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.NewsSiteScrapper.props",
-      "PackagePath": "build\\NewsSiteScrapper.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.NewsWebSiteScraper.props",
+      "PackagePath": "build\\NewsWebSiteScraper.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.NewsSiteScrapper.props",
-      "PackagePath": "buildMultiTargeting\\NewsSiteScrapper.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.NewsWebSiteScraper.props",
+      "PackagePath": "buildMultiTargeting\\NewsWebSiteScraper.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.NewsSiteScrapper.props",
-      "PackagePath": "buildTransitive\\NewsSiteScrapper.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.NewsWebSiteScraper.props",
+      "PackagePath": "buildTransitive\\NewsWebSiteScraper.props"
     }
   ],
   "ElementsToRemove": []
