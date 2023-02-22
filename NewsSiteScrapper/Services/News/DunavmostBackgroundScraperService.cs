@@ -15,7 +15,7 @@
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _timer = new Timer(Scrape, null, TimeSpan.Zero,
-                TimeSpan.FromMinutes(30)); // run every 5 minutes
+                TimeSpan.FromMinutes(3600)); // run every 120 minutes
 
             return Task.CompletedTask;
         }
@@ -24,8 +24,8 @@
         {
             using (var driver = new ChromeDriver())
             {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-                wait.PollingInterval = TimeSpan.FromMilliseconds(2000);
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(7));
+                wait.PollingInterval = TimeSpan.FromMilliseconds(1000);
 
                 driver.Navigate().GoToUrl("https://www.dunavmost.com/Ruse");
 
@@ -33,15 +33,51 @@
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(cookies));
                 cookies.Click();
 
-                var lastPage = driver.FindElement(By.XPath("//li/a[text()='Край']"));
+                while (true)
+                {
+                    try
+                    {
+                        var lastPage = driver.FindElement(By.XPath("//li/a[text()='Край']"));
 
-                lastPage.Click();
+                        lastPage.Click();
+
+                        //Check if we are on the last page
+                        var correctLastPageElement = driver.FindElement(By.CssSelector("div.paginate > ul > li:nth-child(12) > a"));
+                        var correctLastPageElementIsActive = correctLastPageElement.GetAttribute("class").Contains("active");
+
+                        if (correctLastPageElementIsActive)
+                        {
+                            break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        driver.Navigate().Refresh();
+                    }
+                }
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div.search-result-item")));
 
                 while (true)
                 {
-                    var pagesUlElement = driver.FindElement(By.XPath("//div[@class='paginate']/ul"));
+                    IWebElement pagesUlElement = null;
+
+
+                    while (true)
+                    {
+                        try
+                        {
+                            pagesUlElement = driver.FindElement(By.XPath("//div[@class='paginate']/ul"));
+
+                            break;
+                        }
+                        catch (Exception)
+                        {
+
+                            driver.Navigate().Refresh();
+                            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+                        }
+                    }
 
                     var currentPageElementBeforeRefresh = pagesUlElement.FindElement(By.XPath("//li[a[@class='active']]"));
                     var currentPageBeforeRefresh = currentPageElementBeforeRefresh.Text;
@@ -74,7 +110,21 @@
                     {
                         var ul = allUnorderedListsOfNews[i - 1];
 
-                        var liElementsInUl = ul.FindElements(By.TagName("li"));
+                        ReadOnlyCollection<IWebElement> liElementsInUl = null;
+
+                        while (true)
+                        {
+                            try
+                            {
+                                liElementsInUl = ul.FindElements(By.TagName("li"));
+
+                                break;
+                            }
+                            catch (Exception)
+                            {
+                                driver.Navigate().Refresh();
+                            }
+                        }
 
                         GoThroughEachNews(driver, liElementsInUl.Count, i, wait, totalUlCount);
 
@@ -86,6 +136,7 @@
                     {
                         try
                         {
+                            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                             var previousPageElement = driver.FindElement(By.XPath("//li/a[@alt='Предишна']"));
                             previousPageElement.Click();
 
@@ -93,7 +144,6 @@
                         }
                         catch (Exception)
                         {
-
                             driver.Navigate().Refresh();
                         }
                     }
@@ -117,6 +167,7 @@
                     }
                     catch (Exception)
                     {
+                        driver.Navigate().Back();
                         driver.Navigate().Refresh();
                     }
                 }
@@ -130,14 +181,21 @@
                     newsElement = driver.FindElement(By.XPath($"/html/body/div[1]/section[1]/main/div[3]/ul[{ulNumber}]/li[{i}]"));
                 }
 
-                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(false);", newsElement);
-                newsElement.Click();
+                try
+                {
+                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(false);", newsElement);
+                    newsElement.Click();
+                }
+                catch (Exception)
+                {
+                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", newsElement);
+                }
 
                 var insElements = driver.FindElements(By.CssSelector("ins.adsbygoogle.adsbygoogle-noablate"));
 
                 if (insElements.Count > 0)
                 {
-                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                     try
                     {
                         ClickAnywhereOnThePage(driver);
@@ -145,10 +203,10 @@
                     catch (Exception)
                     {
                         driver.Navigate().Refresh();
-                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                         ClickAnywhereOnThePage(driver);
                     }
-                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                 }
 
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
@@ -156,18 +214,19 @@
                 IWebElement titleElement = null;
                 string title = null;
 
-                try
+                while (true)
                 {
-                    titleElement = driver.FindElement(By.XPath($"/html/body/div[1]/section[1]/main/article/header/h1"));
-                    title = titleElement.Text;
-                }
-                catch (Exception)
-                {
+                    try
+                    {
+                        titleElement = driver.FindElement(By.XPath($"/html/body/div[1]/section[1]/main/article/header/h1"));
+                        title = titleElement.Text;
 
-                    driver.Navigate().Refresh();
-
-                    titleElement = driver.FindElement(By.XPath($"/html/body/div[1]/section[1]/main/article/header/h1"));
-                    title = titleElement.Text;
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        driver.Navigate().Refresh();
+                    }
                 }
 
                 IWebElement imageElement = null;
@@ -203,13 +262,13 @@
 
                 var random = new Random();
 
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(random.Next(15, 60));
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(random.Next(15, 20));
 
                 bool PaginateDivExists = driver.FindElements(By.CssSelector("div.paginate")).Count > 0;
                 if (!PaginateDivExists)
                 {
                     driver.Navigate().Back();
-                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(random.Next(15, 60));
+                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(random.Next(15, 20));
                 }
             }
         }
