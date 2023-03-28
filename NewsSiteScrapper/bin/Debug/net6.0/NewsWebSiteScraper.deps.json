@@ -15,7 +15,9 @@
           "Microsoft.AspNetCore.Identity.UI": "6.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.10",
-          "Selenium.WebDriver": "4.7.0"
+          "Selenium.WebDriver": "4.7.0",
+          "Serilog": "3.0.0-dev-01884",
+          "Serilog.Sinks.File": "5.0.1-dev-00947"
         },
         "runtime": {
           "NewsWebSiteScraper.dll": {}
@@ -435,6 +437,25 @@
           "lib/net6.0/WebDriver.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Serilog/3.0.0-dev-01884": {
+        "runtime": {
+          "lib/net6.0/Serilog.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Serilog.Sinks.File/5.0.1-dev-00947": {
+        "dependencies": {
+          "Serilog": "3.0.0-dev-01884"
+        },
+        "runtime": {
+          "lib/net5.0/Serilog.Sinks.File.dll": {
+            "assemblyVersion": "5.0.1.0",
+            "fileVersion": "5.0.1.0"
           }
         }
       },
@@ -879,6 +900,20 @@
       "sha512": "sha512-WNGX6JxjBS5f79PQnrB4oO+5U83f8tZfND+rqX2YJVHPdv3xS/zZwljWqGu5UDhluo3kEuuT+DuGEZW8/+9fOA==",
       "path": "selenium.webdriver/4.7.0",
       "hashPath": "selenium.webdriver.4.7.0.nupkg.sha512"
+    },
+    "Serilog/3.0.0-dev-01884": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uxEgiq+mH9OIojszmjFeV751bQ/MetBWZrCKD7P+5DkDYN9v6p0sl/8m3pn8YaqunnSvElPfo5CKpoU9PuRM5Q==",
+      "path": "serilog/3.0.0-dev-01884",
+      "hashPath": "serilog.3.0.0-dev-01884.nupkg.sha512"
+    },
+    "Serilog.Sinks.File/5.0.1-dev-00947": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rCxuBUTC4v/Mawa2bCD0CkEODiCIJqQvxZfWmZb9O2W1hcZ77WCrNGw2nKnXCuSII4cuWip9QwWbn9wmLzS5sA==",
+      "path": "serilog.sinks.file/5.0.1-dev-00947",
+      "hashPath": "serilog.sinks.file.5.0.1-dev-00947.nupkg.sha512"
     },
     "System.Collections.Immutable/6.0.0": {
       "type": "package",

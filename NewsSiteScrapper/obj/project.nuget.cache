@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ows4RRrlzIfnFdJLyAnIIDXju+FwA0hpc1s2Z0+VJjqJHM8KGC5K3sTXgirIronME0GuZ0uKuVoP5QLgYBGrxg==",
+  "dgSpecHash": "XDQAnvok/9QrwlFfCKvfbPJXXltuEug5QrKJHOstI2r+GWJ20KK1EzWrXd9bMqohIS1anfQqyktFqDpspmUqbA==",
   "success": true,
   "projectFilePath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,8 @@
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\selenium.webdriver\\4.7.0\\selenium.webdriver.4.7.0.nupkg.sha512",
+    "C:\\Users\\GothDaddy\\.nuget\\packages\\serilog\\3.0.0-dev-01884\\serilog.3.0.0-dev-01884.nupkg.sha512",
+    "C:\\Users\\GothDaddy\\.nuget\\packages\\serilog.sinks.file\\5.0.1-dev-00947\\serilog.sinks.file.5.0.1-dev-00947.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-
 #nullable disable
-
 namespace NewsWebSiteScraper.Data.Migrations
 {
     public partial class InitialDatabase : Migration
@@ -23,7 +21,6 @@ namespace NewsWebSiteScraper.Data.Migrations
                     table.PrimaryKey("PK_News", x => x.Id);
                 });
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
