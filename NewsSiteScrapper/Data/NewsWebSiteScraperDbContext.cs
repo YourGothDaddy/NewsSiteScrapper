@@ -9,6 +9,16 @@
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<News>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+
+            base.OnModelCreating(builder);
+        }
         public DbSet<News> News { get; set; }
     }
 }

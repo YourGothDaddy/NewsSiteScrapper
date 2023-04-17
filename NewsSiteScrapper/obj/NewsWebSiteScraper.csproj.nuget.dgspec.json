@@ -68,6 +68,10 @@
               "target": "Package",
               "version": "[6.0.10, )"
             },
+            "Microsoft.Extensions.ObjectPool": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
             "Selenium.WebDriver": {
               "target": "Package",
               "version": "[4.7.0, )"

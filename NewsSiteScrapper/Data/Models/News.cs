@@ -9,6 +9,8 @@
         [Required]
         public string ImageUrl { get; set; }
         [Required]
-        public List<string> content { get; set; } = new List<string>();
+        public string Content { get; set; } = string.Empty;
+
+        public DateTime Date { get; set; }
     }
 }

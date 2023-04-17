@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XDQAnvok/9QrwlFfCKvfbPJXXltuEug5QrKJHOstI2r+GWJ20KK1EzWrXd9bMqohIS1anfQqyktFqDpspmUqbA==",
+  "dgSpecHash": "Rx0zt6qB0hqRE2PXOiwm9Q+VBG+2FLWzo7g/L+S32Hz27j2Te/cTxiLo4EfSVJgVghEApm460mvKTMra11w3sg==",
   "success": true,
   "projectFilePath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.extensions.identity.stores\\6.0.10\\microsoft.extensions.identity.stores.6.0.10.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.extensions.objectpool\\7.0.5\\microsoft.extensions.objectpool.7.0.5.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\microsoft.identity.client\\4.21.1\\microsoft.identity.client.4.21.1.nupkg.sha512",

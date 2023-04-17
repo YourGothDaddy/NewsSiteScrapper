@@ -15,6 +15,7 @@
           "Microsoft.AspNetCore.Identity.UI": "6.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.10",
+          "Microsoft.Extensions.ObjectPool": "7.0.5",
           "Selenium.WebDriver": "4.7.0",
           "Serilog": "3.0.0-dev-01884",
           "Serilog.Sinks.File": "5.0.1-dev-00947"
@@ -320,6 +321,14 @@
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/6.0.0": {},
+      "Microsoft.Extensions.ObjectPool/7.0.5": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.523.17410"
+          }
+        }
+      },
       "Microsoft.Extensions.Options/6.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
@@ -809,6 +818,13 @@
       "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
       "path": "microsoft.extensions.logging.abstractions/6.0.0",
       "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.ObjectPool/7.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uylNo8wuzAeqAJDyLDUM2JWSpTdCHTp11BXCsCO68LXnDjxwDM4PL6mJmho/+fJesWKdcJV5XB/Oa80wAJXnvQ==",
+      "path": "microsoft.extensions.objectpool/7.0.5",
+      "hashPath": "microsoft.extensions.objectpool.7.0.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Options/6.0.0": {
       "type": "package",

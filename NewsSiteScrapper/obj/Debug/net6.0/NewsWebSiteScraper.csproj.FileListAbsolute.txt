@@ -83,3 +83,4 @@ D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\obj\Debug\net6.
 D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\SeleniumExtras.WaitHelpers.dll
 D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\Serilog.dll
 D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\Serilog.Sinks.File.dll
+D:\AlexDoNotTouch\Coding\repos\NewsSiteScrapper\NewsSiteScrapper\bin\Debug\net6.0\Microsoft.Extensions.ObjectPool.dll
