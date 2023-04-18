@@ -1,0 +1,21 @@
+﻿@model List<DisplayListOfNewsViewModel>
+
+<div class="container mt-5">
+    <div class="list-group">
+        @foreach (var news in Model)
+        {
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img src="@news.ImageUrl" id="newsImg" class="img-fluid rounded" alt="@news.Title">
+                    </div>
+                    <div class="col-9 align-items-start">
+                        <h6 class="card-title">@news.Title</h6>
+                        <p class="card-text">@news.Date?.ToString("dddd, dd MMMM yyyy")</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -18,27 +18,7 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" role="button" id="navbarDropdownMenuLink-News" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    News
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-News">
-                    <div class="dropdown-submenu">
-                      <a class="dropdown-item dropdown-toggle" tabindex="-1" href="#">Bulgaria</a>
-                      <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true">
-                        <a class="dropdown-item" href="/News/Dunavmost">Dunavmost</a>
-                        <a class="dropdown-item" href="#">Petel</a>
-                      </div>
-                    </div>
-                    <div class="dropdown-submenu">
-                      <a class="dropdown-item dropdown-toggle" tabindex="-1" href="#">International</a>
-                      <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true">
-                        <a class="dropdown-item" href="#">NY Times</a>
-                        <a class="dropdown-item" href="#">DragonFire</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                        <a asp-area="" asp-controller="News" asp-action="Bulgaria">Test</a>
               </ul>
               <partial name="_LoginPartial" />
             </div>

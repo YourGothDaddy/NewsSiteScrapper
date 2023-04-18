@@ -22,6 +22,7 @@ namespace NewsWebsiteSiteScraper
 
 
             builder.Services.AddHostedService<BackgroundScraperService>();
+            builder.Services.AddTransient<INewsService, NewsService>();
 
             // Configure logging
             builder.Logging.ClearProviders();
