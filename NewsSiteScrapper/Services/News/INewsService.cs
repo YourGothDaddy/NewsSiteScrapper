@@ -8,6 +8,9 @@
             string imageUrl,
             string content);
 
-        public Task<List<DisplayListOfNewsViewModel>> RetrieveAllNewsAsync();
+        public Task<List<NewsModel>> RetrieveAllNewsForThePageAsync(int? pageNumber,
+            int numberOfNewsOnPage);
+
+        public Task<int> RetrieveAllNewsCountAsync();
     }
 }

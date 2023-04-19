@@ -26,19 +26,33 @@
             data.News.Add(news);
         }
 
-        public async Task<List<DisplayListOfNewsViewModel>> RetrieveAllNewsAsync()
+        public async Task<List<NewsModel>> RetrieveAllNewsForThePageAsync(int? pageNumber, int numberOfNewsOnPage)
         {
             var allNews = await this.data
                 .News
-                .Select(n => new DisplayListOfNewsViewModel
+                .OrderByDescending(n => n.Date)
+                .Where(n => n.Date != new DateTime(1000, 1, 1, 12, 30, 0))
+                .Select(n => new NewsModel
                 {
                     Title = n.Title,
                     ImageUrl = n.ImageUrl
                 })
-                .Take(10)
+                .Skip((pageNumber.Value - 1) * numberOfNewsOnPage)
+                .Take(numberOfNewsOnPage)
                 .ToListAsync();
 
             return allNews;
+        }
+
+        public async Task<int> RetrieveAllNewsCountAsync()
+        {
+            var totalNewsCount = await this.data
+                .News
+                .Where(n => n.Date != new DateTime(1000, 1, 1, 12, 30, 0))
+                .CountAsync();
+
+            return totalNewsCount;
+
         }
     }
 }

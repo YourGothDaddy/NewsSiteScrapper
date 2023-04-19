@@ -2,8 +2,11 @@
 {
     using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Mvc;
-    using NewsWebSiteScraper.Models.News;
     using NewsWebSiteScraper.Services.News;
+
+    using NewsWebSiteScraper.Constants;
+    using NewsWebSiteScraper.Models.News;
+    using static OpenQA.Selenium.PrintOptions;
 
     public class NewsController : Controller
     {
@@ -13,11 +16,24 @@
         {
             this.news = news;
         }
-        public async Task<IActionResult> Bulgaria()
+        public async Task<IActionResult> Bulgaria(int? pageNumber)
         {
-            var allNews = await this.news.RetrieveAllNewsAsync();
+            var numberOfNewsOnPage = ControllerConstants.NumberOfNewsOnAPage;
+            pageNumber ??= 1;
+            var allNews = await this.news.RetrieveAllNewsCountAsync();
+            var newsOnThePage = await this.news.RetrieveAllNewsForThePageAsync(pageNumber, numberOfNewsOnPage);
+            var totalPages = (int)Math.Ceiling((double)allNews / numberOfNewsOnPage);
 
-            return View(allNews);
+            var viewModel = new DisplayListOfNewsViewModel
+            {
+                News = newsOnThePage,
+                PageNumber = pageNumber.Value,
+                NumberOfNewsOnPage = numberOfNewsOnPage,
+                TotalNewsCount = allNews,
+                TotalPages = totalPages
+            };
+
+            return View(viewModel);
         }
         public string RemoveHtmlTags(string html)
         {
