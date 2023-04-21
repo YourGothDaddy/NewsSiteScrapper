@@ -20,8 +20,19 @@
             var numberOfNewsOnPage = ControllerConstants.NumberOfNewsOnAPage;
             pageNumber ??= 1;
             var allNews = await this.news.RetrieveAllNewsCountAsync();
+
+            if (pageNumber < 1)
+            {
+                return RedirectToAction("Bulgaria", new { pageNumber = 1 });
+            }
+
             var newsOnThePage = await this.news.RetrieveAllNewsForThePageAsync(pageNumber, numberOfNewsOnPage);
             var totalPages = (int)Math.Ceiling((double)allNews / numberOfNewsOnPage);
+
+            if (pageNumber > totalPages)
+            {
+                return RedirectToAction("Bulgaria", new { pageNumber = totalPages });
+            }
 
             var viewModel = new DisplayListOfNewsViewModel
             {
