@@ -22,7 +22,7 @@
  
         private async void Scrape(object state)
         {
-            if (false)
+            while (false)
             {
                 var connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-NewsWebSiteScraper-ddf924d2-6eff-4e74-96c7-57e851aa0eff;Trusted_Connection=True;MultipleActiveResultSets=true";
                 using (var connection = new SqlConnection(connectionString))
@@ -30,7 +30,7 @@
                     await connection.OpenAsync();
 
                     Console.WriteLine("Connection opened");
-                    // DeleteNewsAsync();
+                    //await DeleteNewsAsync();
                     Console.OutputEncoding = Encoding.UTF8;
 
                     var fileName = "lastProcessedPage.txt";
@@ -73,7 +73,7 @@
 
                     timer.Start();
 
-                    while (nextPageLink.Attributes["href"] != null)
+                    while (nextPageLink != null)
                     {
                         if (timerWasStopped)
                         {
@@ -90,9 +90,9 @@
                                 await GoThroughEachNewsAsync(links, nodes);
                                 Console.WriteLine($"Last page is {lastPage}");
 
-                                if (lastPage % 100 == 0)
+                                if (lastPage % 10 == 0)
                                 {
-                                    var newsData = await GetTheNewsDataAsync(web, doc, links);
+                                    var newsData = await GetTheNewsDataAsync(web, links);
 
                                     if (newsData.Count > 0)
                                     {
@@ -128,6 +128,8 @@
                             Console.WriteLine(e.Message);
                         }
                     }
+
+                    File.WriteAllText(fileName, "1");
                 }
             }
         }
@@ -158,13 +160,13 @@
             return doc;
         }
 
-        private async Task<List<News>> GetTheNewsDataAsync(HtmlWeb web, HtmlDocument doc, List<string> links)
+        private async Task<List<News>> GetTheNewsDataAsync(HtmlWeb web, List<string> links)
         {
             var baseUrl = "https://www.dnes.bg";
 
             var newsTasks = links.Select(async link =>
             {
-                doc = await web.LoadFromWebAsync(baseUrl + link);
+                var doc = await web.LoadFromWebAsync(baseUrl + link);
 
                 var titleElement = doc.DocumentNode.SelectSingleNode("//h1[@class='title']");
                 if (titleElement != null)
@@ -187,29 +189,33 @@
 
                         var dateElement = doc.DocumentNode.SelectSingleNode("//div[@class='art_author']");
 
-                        var date = "";
+                        string date = null;
                         var dateParsed = new DateTime(1000, 1, 1, 12, 30, 0);
 
                         if (dateElement != null)
                         {
-                            if (dateElement.InnerText.StartsWith("Обновена"))
+                            if (dateElement.InnerText.Contains("|"))
                             {
-                                var pipeIndex = dateElement.InnerText.IndexOf('|');
-                                date = dateElement.InnerText.Substring("Обновена: ".Length, pipeIndex - "Обновена: ".Length).Trim();
+                                var splitDates = dateElement.InnerText.Split("|");
+                                var dateParts = splitDates.Last().Split(",");
+                                date = dateParts.First().Trim();
                             }
                             else
                             {
-                                date = dateElement.InnerText.Split(',')[0];
+                                var dateParts = dateElement.InnerText.Split(",");
+                                date = dateParts.First().Trim();
                             }
 
                             try
                             {
-                                if (date.Contains("мар"))
+                                if (!String.IsNullOrEmpty(date))
                                 {
-                                    date = date.Replace("мар", "март");
+                                    if (date.Contains("мар"))
+                                    {
+                                        date = date.Replace("мар", "март");
+                                    }
+                                    dateParsed = DateTime.ParseExact(date, "d MMM yyyy HH:mm", new CultureInfo("bg-BG"));
                                 }
-
-                                dateParsed = DateTime.ParseExact(date, "d MMM yyyy HH:mm", new CultureInfo("bg-BG"));
                             }
                             catch (Exception e)
                             {

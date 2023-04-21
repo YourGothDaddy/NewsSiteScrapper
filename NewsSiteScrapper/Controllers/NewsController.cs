@@ -6,7 +6,6 @@
 
     using NewsWebSiteScraper.Constants;
     using NewsWebSiteScraper.Models.News;
-    using static OpenQA.Selenium.PrintOptions;
 
     public class NewsController : Controller
     {
