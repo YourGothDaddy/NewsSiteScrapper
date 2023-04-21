@@ -11,6 +11,8 @@
         public Task<List<NewsModel>> RetrieveAllNewsForThePageAsync(int? pageNumber,
             int numberOfNewsOnPage);
 
+        public Task<NewsModel> RetrieveNewsAsync(int id);
+
         public Task<int> RetrieveAllNewsCountAsync();
     }
 }

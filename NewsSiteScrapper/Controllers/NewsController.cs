@@ -45,12 +45,22 @@
 
             return View(viewModel);
         }
-        public string RemoveHtmlTags(string html)
+        public async Task<IActionResult> NewsDetails(int id)
         {
-            // Use a regular expression to remove all tags except for <strong> with no attributes
-            string pattern = @"<(?!strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>|/strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>)([^>]*)>|</(?!strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>|/strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>)[^>]*>";
-            string strippedHtml = Regex.Replace(html, pattern, "");
-            return strippedHtml;
+            var newsItem = await this.news.RetrieveNewsAsync(id);
+
+            if (newsItem == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new NewsDetailsViewModel
+            {
+                News = newsItem
+            };
+
+            return View(viewModel);
         }
+
     }
 }

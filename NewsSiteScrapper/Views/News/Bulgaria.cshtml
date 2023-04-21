@@ -7,14 +7,19 @@
             <div class="list-group-item">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <img src="@news.ImageUrl" id="newsImg" class="img-fluid rounded" alt="@news.Title">
+                        <a href="@Url.Action("NewsDetails", "News", new { id = news.Id })">
+                            <img src="@news.ImageUrl" id="newsImg" class="img-fluid rounded" alt="@news.Title">
+                        </a>
                     </div>
                     <div class="col-9 align-items-start">
-                        <h6 class="card-title">@news.Title</h6>
+                        <h6 class="card-title">
+                            <a href="@Url.Action("NewsDetails", "News", new { id = news.Id })">@news.Title</a>
+                        </h6>
                         <p class="card-text">@news.Date?.ToString("dddd, dd MMMM yyyy")</p>
                     </div>
                 </div>
             </div>
+
         }
     </div>
 </div>

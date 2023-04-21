@@ -34,6 +34,7 @@
                 .Where(n => n.Date != new DateTime(1000, 1, 1, 12, 30, 0))
                 .Select(n => new NewsModel
                 {
+                    Id = n.Id,
                     Title = n.Title,
                     ImageUrl = n.ImageUrl
                 })
@@ -42,6 +43,23 @@
                 .ToListAsync();
 
             return allNews;
+        }
+
+        public async Task<NewsModel> RetrieveNewsAsync(int id)
+        {
+            var news = await this.data
+                .News
+                .Where(n => n.Id == id)
+                .Select(n => new NewsModel
+                {
+                    Title = n.Title,
+                    ImageUrl = n.ImageUrl,
+                    Content = n.Content,
+                    Date = n.Date
+                })
+                .FirstOrDefaultAsync();
+
+            return news;
         }
 
         public async Task<int> RetrieveAllNewsCountAsync()
