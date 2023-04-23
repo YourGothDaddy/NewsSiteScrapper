@@ -4,6 +4,7 @@ namespace NewsWebsiteSiteScraper
     using Microsoft.EntityFrameworkCore;
     using NewsWebSiteScraper.Services.News;
     using NewsWebSiteScraper.Data;
+    using NewsWebSiteScraper.Services.Home;
 
     public class Program
     {
@@ -23,6 +24,7 @@ namespace NewsWebsiteSiteScraper
 
             builder.Services.AddHostedService<BackgroundScraperService>();
             builder.Services.AddTransient<INewsService, NewsService>();
+            builder.Services.AddTransient<IHomeService, HomeService>();
 
             // Configure logging
             builder.Logging.ClearProviders();

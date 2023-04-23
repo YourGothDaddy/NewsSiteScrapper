@@ -1,6 +1,5 @@
 ﻿namespace NewsWebsiteSiteScraper.Controllers
 {
-    using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Mvc;
     using NewsWebSiteScraper.Services.News;
 

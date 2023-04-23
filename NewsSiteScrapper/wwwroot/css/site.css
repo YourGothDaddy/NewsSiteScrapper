@@ -14,6 +14,12 @@ body {
   margin-bottom: 60px;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
 /*Custom CSS*/
 #newsImg {
     max-height: 150px;
