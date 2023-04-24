@@ -10,14 +10,6 @@ html {
   position: relative;
   min-height: 100%;
 }
-body {
-  margin-bottom: 60px;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
 
 
 /*Custom CSS*/
@@ -29,4 +21,153 @@ a {
 .list-group-item{
     border:none;
     border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+li{
+    text-decoration: none;
+    color: black;
+}
+
+#most-recent-news-heading{
+    text-align:center;
+}
+/*NAV AREA*/
+#news-wrap {
+    font-size: 150%;
+}
+
+#news-wrap-ul {
+    list-style: none;
+    width: 100%;
+}
+
+#nav-main {
+    background-color: #009ad1;
+}
+
+#nav-pagination{
+    margin-top:1.5rem;
+}
+
+#logo-nav {
+    color: white;
+}
+
+#bulgaria-news-option {
+    color: white;
+    white-space: nowrap;
+}
+
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+#content-section{
+    margin-bottom: 6rem;
+}
+
+
+.wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 85%;
+    overflow: hidden;
+    line-height: 0;
+    transition: top 0.3s ease-out;
+}
+
+    .wave svg {
+        position: relative;
+        display: block;
+        width: calc(163% + 1.3px);
+        height: 195px;
+    }
+
+    .wave .shape-fill {
+        fill: #009BD2;
+    }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover {
+        color: black;
+    }
+
+
+/*Media Queries*/
+
+@media (min-width: 1550px) and (max-width: 1600px) {
+    .wave {
+        width: 65%;
+    }
+}
+
+@media (min-width: 1500px) and (max-width: 1550px) {
+    .wave {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1500px) {
+    .wave {
+        width: 55%;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
+    .wave {
+        width: 65%;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1300px) {
+    .wave{
+        width:60%;
+    }
+    #news-wrap{
+        font-size: 120%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .wave {
+        width: 100%;
+    }
+
+    #news-wrap {
+        font-size: 120%;
+    }
+
+    #most-recent-news-heading {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .wave {
+        width: 85%;
+    }
+
+    #news-wrap {
+        font-size: 120%;
+    }
+
+    .row-cols-md-3 > * {
+        flex-basis: calc(50% - 0.5rem);
+    }
+
+    #most-recent-news-heading{
+        margin-top: 10%;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 450px){
+    .wave {
+        width: 100%;
+    }
 }

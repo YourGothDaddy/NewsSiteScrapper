@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "v0euZZf7VLDOYZ+BTsLP6YKZATppnsoIadNimpJx/zc=",
+  "Hash": "9M9C6p6nexHyKqMtCWT5pcRgCC9jaB85E4Sp32uxsNI=",
   "Source": "NewsWebSiteScraper",
   "BasePath": "_content/NewsWebSiteScraper",
   "Mode": "Default",
@@ -2089,6 +2089,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\wwwroot\\wave.svg",
+      "SourceId": "NewsWebSiteScraper",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\wwwroot\\",
+      "BasePath": "_content/NewsWebSiteScraper",
+      "RelativePath": "wave.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\wave.svg"
     }
   ]
 }

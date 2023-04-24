@@ -1,50 +1,63 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - NewsWebSiteScraper</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/NewsWebSiteScraper.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/NewsWebSiteScraper.styles.css" asp-append-version="true">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-          <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Alexander's News Website</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-              <ul class="navbar-nav mr-auto">
-                        <a asp-area="" asp-controller="News" asp-action="Bulgaria">News from Bulgaria</a>
-              </ul>
-              <partial name="_LoginPartial" />
+    <section>
+        <header>
+            <nav id="nav-main" class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+                <div class="container">
+                    <a id="logo-nav" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">неКРАДЕНИ НОВИНИ</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between w-100 text-white">
+                        <div class="ms-auto">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div id="news-wrap" class="container">
+                <ul id="news-wrap-ul" class="d-flex justify-content-between">
+                    <li>
+                        <a id="bulgaria-news-option" asp-area="" asp-controller="News" asp-action="Bulgaria">Новини от България</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="border-top footer text-muted">
+
+            <div class="wave" style="z-index:-5;">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 105" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </header>
+    </section>
+
+    <section id="content-section">
         <div class="container">
-            &copy; 2022 - NewsWebSiteScraper - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+    </section>
+
+    <section>
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - NewsWebSiteScraper - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </section>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script>
-        $('.dropdown-submenu a.dropdown-toggle').on("click", function(e) {
-          $('.dropdown-submenu .dropdown-menu').not($(this).next('.dropdown-menu')).removeClass('show');
-          $(this).next('.dropdown-menu').toggleClass('show');
-          e.stopPropagation();
-        });
-    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
