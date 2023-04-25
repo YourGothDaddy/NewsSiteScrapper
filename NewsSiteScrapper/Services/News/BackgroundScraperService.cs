@@ -90,7 +90,7 @@
                                 await GoThroughEachNewsAsync(links, nodes);
                                 Console.WriteLine($"Last page is {lastPage}");
 
-                                if (lastPage % 10 == 0)
+                                if (lastPage % 1 == 0)
                                 {
                                     var newsData = await GetTheNewsDataAsync(web, links);
 
@@ -234,6 +234,7 @@
                             Date = dateParsed,
                             ImageUrl = imageSrc
                         };
+                        Console.WriteLine($"News created with title {title}");
 
                         return currentNews;
                     }
@@ -246,7 +247,6 @@
             return news;
         }
 
-
         private async Task SaveNewsAsync(List<News> news)
         {
             var context = await data.CreateDbContextAsync();
@@ -254,20 +254,10 @@
             {
                 await context.News.AddRangeAsync(news);
                 await context.SaveChangesAsync();
-            }
-            finally
-            {
-                await context.DisposeAsync();
-            }
-        }
-
-        private async Task DeleteNewsAsync()
-        {
-            var context = await data.CreateDbContextAsync();
-            try
-            {
-                context.News.RemoveRange(context.News);
-                await context.SaveChangesAsync();
+                foreach (var newsArticle in news)
+                {
+                    Console.WriteLine($"Saved news with title - {newsArticle.Title}");
+                }
             }
             finally
             {
@@ -289,8 +279,6 @@
                 await context.DisposeAsync();
             }
         }
-
-
 
         private string SterilizeTheNews(IEnumerable<HtmlNode> contentParagraphs)
         {

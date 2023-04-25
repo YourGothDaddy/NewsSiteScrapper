@@ -17,17 +17,23 @@ navbarToggler.addEventListener('click', function () {
     }
 });
 
-const waveElement = document.querySelector('.wave');
+function updateWaveElementPosition() {
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
-function checkViewportWidth() {
-    const viewportWidth = window.innerWidth;
-    if (viewportWidth > 576) {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const waveElement = document.querySelector('.wave');
+
+    if (navbarToggler.classList.contains('collapsed') && viewportWidth < 576) {
         waveElement.style.top = '0';
-    } else {
+    } else if (viewportWidth < 576) {
         waveElement.style.top = '90px';
+    } else {
+        waveElement.style.top = '0';
     }
 }
 
-// Check viewport width on load and resize
-window.addEventListener('load', checkViewportWidth);
-window.addEventListener('resize', checkViewportWidth);
+// Call the function once on page load
+updateWaveElementPosition();
+
+// Call the function on window resize
+window.addEventListener('resize', updateWaveElementPosition);

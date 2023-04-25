@@ -15,7 +15,7 @@
                         <h6 class="card-title">
                             <a href="@Url.Action("NewsDetails", "News", new { id = news.Id })">@news.Title</a>
                         </h6>
-                        <p class="card-text">@news.Date?.ToString("dddd, dd MMMM yyyy")</p>
+                        <p class="card-text">@news.Date?.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("bg-BG"))</p>
                     </div>
                 </div>
             </div>
