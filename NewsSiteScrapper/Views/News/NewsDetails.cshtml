@@ -1,0 +1,14 @@
+﻿@model NewsDetailsViewModel
+
+<div class="container mt-5">
+    <div>
+        <div class="d-flex justify-content-center">
+            <img src="@Model.News.ImageUrl" class="card-img-top" alt="@Model.News.Title" style="aspect-ratio: 2/1; width:75%;">
+        </div>
+        <div class="card-body">
+            <p class="card-text"><small class="text-muted">@Model.News.Date?.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("bg-BG"))</small></p>
+            <h5 class="card-title">@Model.News.Title</h5>
+            <p class="card-text">@Model.News.Content</p>
+        </div>
+    </div>
+</div>

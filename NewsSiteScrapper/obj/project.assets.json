@@ -2746,11 +2746,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
+      "projectUniqueName": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapperOLD\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
       "projectName": "NewsWebSiteScraper",
-      "projectPath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
+      "projectPath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapperOLD\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
       "packagesPath": "C:\\Users\\GothDaddy\\.nuget\\packages\\",
-      "outputPath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\obj\\",
+      "outputPath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapperOLD\\NewsSiteScrapper\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\GothDaddy\\AppData\\Roaming\\NuGet\\NuGet.Config",

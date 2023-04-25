@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rx0zt6qB0hqRE2PXOiwm9Q+VBG+2FLWzo7g/L+S32Hz27j2Te/cTxiLo4EfSVJgVghEApm460mvKTMra11w3sg==",
+  "dgSpecHash": "HUymk9b0XpTn4sZcq/GebVUmHebWh0Ar8wWVJnErKdqSgVoBaxBGti2a+t3+gDVgSiM7Xs5+Yy0fKY2Hij4X6A==",
   "success": true,
-  "projectFilePath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapper\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
+  "projectFilePath": "D:\\AlexDoNotTouch\\Coding\\repos\\NewsSiteScrapperOLD\\NewsSiteScrapper\\NewsWebSiteScraper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GothDaddy\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\GothDaddy\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
