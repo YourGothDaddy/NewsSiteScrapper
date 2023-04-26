@@ -9,5 +9,7 @@
         public string? Content { get; set; }
 
         public DateTime? Date { get; set; }
+
+        public int UniqueViews { get; set; }
     }
 }

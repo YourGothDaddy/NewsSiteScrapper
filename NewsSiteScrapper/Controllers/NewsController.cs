@@ -5,14 +5,18 @@
 
     using NewsWebSiteScraper.Constants;
     using NewsWebSiteScraper.Models.News;
+    using NewsWebSiteScraper.Services.Users;
 
     public class NewsController : Controller
     {
         private readonly INewsService news;
+        private readonly IUserService users;
 
-        public NewsController(INewsService news)
+        public NewsController(INewsService news,
+            IUserService users)
         {
             this.news = news;
+            this.users = users;
         }
         public async Task<IActionResult> Bulgaria(int? pageNumber)
         {
@@ -51,6 +55,22 @@
             if (newsItem == null)
             {
                 return NotFound();
+            }
+
+            Console.WriteLine($"HttpContext.User.Identity.Name: {HttpContext.User.Identity.Name}");
+            Console.WriteLine($"HttpContext.Connection.RemoteIpAddress: {HttpContext.Connection.RemoteIpAddress.ToString()}");
+            var userId = HttpContext.User.Identity.Name;
+            if (userId == null)
+            {
+                Console.WriteLine("We should not be here!");
+                userId = HttpContext.Connection.RemoteIpAddress.ToString();
+            }
+
+            var userHasViewedTheNews = await this.users.UserHasViewedTheNewsAsync(id, userId);
+
+            if (!userHasViewedTheNews)
+            {
+                await this.news.IncrementUniqueNewsAsync(id, userId);
             }
 
             var viewModel = new NewsDetailsViewModel

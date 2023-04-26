@@ -6,6 +6,7 @@ namespace NewsWebsiteSiteScraper
     using NewsWebSiteScraper.Data;
     using NewsWebSiteScraper.Services.Home;
     using NewsWebSiteScraper.Data.Models;
+    using NewsWebSiteScraper.Services.Users;
 
     public class Program
     {
@@ -26,6 +27,7 @@ namespace NewsWebsiteSiteScraper
             builder.Services.AddHostedService<BackgroundScraperService>();
             builder.Services.AddTransient<INewsService, NewsService>();
             builder.Services.AddTransient<IHomeService, HomeService>();
+            builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddScoped<UserManager<User>, UserManager<User>>();
 
             // Configure logging

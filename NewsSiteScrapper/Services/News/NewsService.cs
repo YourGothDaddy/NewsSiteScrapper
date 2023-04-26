@@ -55,7 +55,8 @@
                     Title = n.Title,
                     ImageUrl = n.ImageUrl,
                     Content = n.Content,
-                    Date = n.Date
+                    Date = n.Date,
+                    UniqueViews = n.UniqueViews
                 })
                 .FirstOrDefaultAsync();
 
@@ -71,6 +72,22 @@
 
             return totalNewsCount;
 
+        }
+
+        public async Task IncrementUniqueNewsAsync(int id, string userId)
+        {
+            var newsItem = await this.data
+                .News
+                .Where(n => n.Id == id)
+                .FirstOrDefaultAsync();
+
+            newsItem.UniqueViews += 1;
+
+            await this.data
+                .NewsViews
+                .AddAsync(new NewsViews { NewsId = id, UserId = userId });
+
+            await this.data.SaveChangesAsync();
         }
     }
 }

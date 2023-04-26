@@ -10,6 +10,10 @@
         {
         }
 
+        public DbSet<News> News { get; set; }
+
+        public DbSet<NewsViews> NewsViews { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<News>(entity =>
@@ -17,8 +21,10 @@
                 entity.HasKey(x => x.Id);
             });
 
+            builder.Entity<NewsViews>()
+                .HasKey(nv => new { nv.NewsId, nv.UserId });
+
             base.OnModelCreating(builder);
         }
-        public DbSet<News> News { get; set; }
     }
 }

@@ -14,5 +14,7 @@
         public Task<NewsModel> RetrieveNewsAsync(int id);
 
         public Task<int> RetrieveAllNewsCountAsync();
+
+        public Task IncrementUniqueNewsAsync(int id, string userId);
     }
 }

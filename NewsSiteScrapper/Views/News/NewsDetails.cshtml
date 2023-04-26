@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
             <p class="card-text"><small class="text-muted">@Model.News.Date?.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("bg-BG"))</small></p>
+            <p class="card-text"><small class="text-muted">@Model.News.UniqueViews</small></p>
             <h5 class="card-title">@Model.News.Title</h5>
             <p class="card-text">@Model.News.Content</p>
         </div>

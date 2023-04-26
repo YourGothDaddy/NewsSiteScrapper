@@ -182,9 +182,25 @@ namespace NewsWebSiteScraper.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UniqueViews")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("News");
+                });
+
+            modelBuilder.Entity("NewsWebSiteScraper.Data.Models.NewsViews", b =>
+                {
+                    b.Property<int>("NewsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("NewsId", "UserId");
+
+                    b.ToTable("NewsViews");
                 });
 
             modelBuilder.Entity("NewsWebSiteScraper.Data.Models.User", b =>
