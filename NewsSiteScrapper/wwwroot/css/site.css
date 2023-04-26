@@ -98,9 +98,11 @@ a {
         color: black;
     }
 
-
+/*Identity Area*/
+.form-floating{
+    margin-bottom: 0.75rem;
+}
 /*Media Queries*/
-
 @media (min-width: 1550px) and (max-width: 1600px) {
     .wave {
         width: 65%;

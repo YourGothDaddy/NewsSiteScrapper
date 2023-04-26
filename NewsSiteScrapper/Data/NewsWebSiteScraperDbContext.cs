@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using NewsWebSiteScraper.Data.Models;
-    public class NewsWebSiteScraperDbContext : IdentityDbContext
+    public class NewsWebSiteScraperDbContext : IdentityDbContext<User>
     {
         public NewsWebSiteScraperDbContext(DbContextOptions<NewsWebSiteScraperDbContext> options)
             : base(options)

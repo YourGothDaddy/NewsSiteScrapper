@@ -22,7 +22,7 @@
  
         private async void Scrape(object state)
         {
-            while (false)
+            while (true)
             {
                 var connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-NewsWebSiteScraper-ddf924d2-6eff-4e74-96c7-57e851aa0eff;Trusted_Connection=True;MultipleActiveResultSets=true";
                 using (var connection = new SqlConnection(connectionString))
@@ -115,11 +115,11 @@
                                     }
                                 }
 
-                                lastPage++;
                                 File.WriteAllText(fileName, lastPage.ToString());
                                 pageToGo = $"https://www.dnes.bg/news.php?last&cat=1&page={lastPage}";
                                 doc = NavigateToNextNewsPage(web, pageToGo);
                                 nextPageLink = doc.DocumentNode.SelectSingleNode("//a[@class='pagination-next']");
+                                await Task.Delay(3600000);
                             }
 
                         }

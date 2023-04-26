@@ -5,6 +5,7 @@ namespace NewsWebsiteSiteScraper
     using NewsWebSiteScraper.Services.News;
     using NewsWebSiteScraper.Data;
     using NewsWebSiteScraper.Services.Home;
+    using NewsWebSiteScraper.Data.Models;
 
     public class Program
     {
@@ -15,7 +16,7 @@ namespace NewsWebsiteSiteScraper
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<NewsWebSiteScraperDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContextFactory<NewsWebSiteScraperDbContext>(options =>
@@ -25,6 +26,7 @@ namespace NewsWebsiteSiteScraper
             builder.Services.AddHostedService<BackgroundScraperService>();
             builder.Services.AddTransient<INewsService, NewsService>();
             builder.Services.AddTransient<IHomeService, HomeService>();
+            builder.Services.AddScoped<UserManager<User>, UserManager<User>>();
 
             // Configure logging
             builder.Logging.ClearProviders();
