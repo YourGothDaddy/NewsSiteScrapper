@@ -32,5 +32,23 @@
 
             return recentNews;
         }
+
+        public async Task<List<NewsModel>> RetrieveMostViewedNewsAsync(int numberOfNewsToRetrieve)
+        {
+            var mostViewedNews = await this.data
+                .News
+                .OrderByDescending(n => n.UniqueViews)
+                .Take(this.data.News.Count() < numberOfNewsToRetrieve ? this.data.News.Count() : numberOfNewsToRetrieve)
+                .Select(n => new NewsModel
+                {
+                    Id = n.Id,
+                    Title = n.Title,
+                    ImageUrl = n.ImageUrl,
+                    Date = n.Date
+                })
+                .ToListAsync();
+
+            return mostViewedNews;
+        }
     }
 }

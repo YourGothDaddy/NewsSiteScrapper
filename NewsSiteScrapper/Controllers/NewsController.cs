@@ -57,8 +57,7 @@
                 return NotFound();
             }
 
-            Console.WriteLine($"HttpContext.User.Identity.Name: {HttpContext.User.Identity.Name}");
-            Console.WriteLine($"HttpContext.Connection.RemoteIpAddress: {HttpContext.Connection.RemoteIpAddress.ToString()}");
+           
             var userId = HttpContext.User.Identity.Name;
             if (userId == null)
             {

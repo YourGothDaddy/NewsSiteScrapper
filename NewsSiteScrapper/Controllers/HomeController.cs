@@ -18,14 +18,17 @@
         public async Task<IActionResult> Index()
         {
             var recentNews = await home.RetrieveMostRecentNewsAsync(6);
+            var mostViewedNews = await home.RetrieveMostViewedNewsAsync(6);
 
             var model = new DisplayListOfMostRecentNewsViewModel
             {
-                News = recentNews
+                News = recentNews,
+                MostViewedNews = mostViewedNews
             };
 
             return View(model);
         }
+
         public IActionResult Privacy()
         {
             return View();

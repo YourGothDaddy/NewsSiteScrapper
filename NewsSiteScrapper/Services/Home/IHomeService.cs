@@ -5,5 +5,7 @@
     public interface IHomeService
     {
         public Task<List<NewsModel>> RetrieveMostRecentNewsAsync(int numberOfNewsToRetrieve);
+
+        public Task<List<NewsModel>> RetrieveMostViewedNewsAsync(int numberOfNewsToRetrieve);
     }
 }
