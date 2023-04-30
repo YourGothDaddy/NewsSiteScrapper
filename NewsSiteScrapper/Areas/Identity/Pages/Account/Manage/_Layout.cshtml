@@ -1,5 +1,7 @@
-﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+﻿@inject UserManager<NewsWebSiteScraper.Data.Models.User> UserManager
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
     {
         Layout = parentLayout.ToString();
     }
@@ -10,20 +12,23 @@
 }
 
 <h1>Управление на акаунта</h1>
-
-<div>
+<div class="container">
     <h2>Промяна на настройките</h2>
     <hr />
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <partial name="_ManageNav" />
         </div>
-        <div class="col-md-9">
+        <div class="col-md-4 identity-manage-layout">
             @RenderBody()
+        </div>
+        <div class="col-md-4 identity-manage-layout">
+            <div class="text-center">
+                <img id="profile-image" src="@UserManager.GetUserAsync(User).Result.ImageUrl" class="rounded" alt="Profile Image">
+            </div>
         </div>
     </div>
 </div>
-
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
