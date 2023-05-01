@@ -11,6 +11,7 @@
         {
             this.data = data;
         }
+
         public async Task<bool> UserHasViewedTheNewsAsync(int newsId, string userId)
         {
             var hasViewed = await this.data

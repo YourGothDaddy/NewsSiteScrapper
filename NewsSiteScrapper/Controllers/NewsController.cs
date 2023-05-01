@@ -6,6 +6,8 @@
     using NewsWebSiteScraper.Constants;
     using NewsWebSiteScraper.Models.News;
     using NewsWebSiteScraper.Services.Users;
+    using NewsWebSiteScraper.Data.Models;
+    using System.Security.Claims;
 
     public class NewsController : Controller
     {
@@ -59,6 +61,7 @@
 
            
             var userId = HttpContext.User.Identity.Name;
+            Console.WriteLine(userId);
             if (userId == null)
             {
                 Console.WriteLine("We should not be here!");
@@ -72,12 +75,36 @@
                 await this.news.IncrementUniqueNewsAsync(id, userId);
             }
 
+            var comments = await this.news.RetrieveCommentsAsync(id);
+
             var viewModel = new NewsDetailsViewModel
             {
-                News = newsItem
+                News = newsItem,
+                Comments = comments
             };
 
             return View(viewModel);
+        }
+
+        public async Task<IActionResult> AddComment(int newsId, string commentContent)
+        {
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return BadRequest("User is not authenticated");
+            }
+
+            var comment = new Comment
+            {
+                NewsId = newsId,
+                Content = commentContent,
+                Date = DateTime.UtcNow,
+                UserId = userId
+            };
+
+            await this.news.AddCommentAsync(comment);
+
+            return RedirectToAction("NewsDetails", new { id = newsId });
         }
 
     }

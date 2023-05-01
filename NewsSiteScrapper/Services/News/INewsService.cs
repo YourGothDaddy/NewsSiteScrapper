@@ -1,5 +1,6 @@
 ﻿namespace NewsWebSiteScraper.Services.News
 {
+    using NewsWebSiteScraper.Data.Models;
     using NewsWebSiteScraper.Models.News;
 
     public interface INewsService
@@ -16,5 +17,9 @@
         public Task<int> RetrieveAllNewsCountAsync();
 
         public Task IncrementUniqueNewsAsync(int id, string userId);
+
+        public Task<List<CommentModel>> RetrieveCommentsAsync(int newsId);
+
+        public Task AddCommentAsync(Comment comment);
     }
 }

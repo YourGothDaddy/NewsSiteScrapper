@@ -14,5 +14,7 @@
         public DateTime Date { get; set; }
 
         public int UniqueViews { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

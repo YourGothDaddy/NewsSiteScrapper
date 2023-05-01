@@ -12,4 +12,27 @@
             <p class="card-text">@Model.News.Content</p>
         </div>
     </div>
+    <hr />
+    <h4>Comments</h4>
+    <div id="comments">
+        @foreach (var comment in @Model.Comments)
+        {
+            <div id="comment-section">
+                <p id="commentator">@comment.FullName</p>
+                <p>@comment.Content</p>
+            </div>
+        }
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h4>Add a comment</h4>
+        <form asp-controller="News" asp-action="AddComment" method="post">
+            <input type="hidden" name="newsId" value="@Model.News.Id" />
+            <div class="form-group">
+                <label for="commentContent">Comment</label>
+                <textarea class="form-control" name="commentContent" id="commentContent" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    }
 </div>

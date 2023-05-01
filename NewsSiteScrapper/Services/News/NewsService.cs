@@ -52,6 +52,7 @@
                 .Where(n => n.Id == id)
                 .Select(n => new NewsModel
                 {
+                    Id = n.Id,
                     Title = n.Title,
                     ImageUrl = n.ImageUrl,
                     Content = n.Content,
@@ -87,6 +88,32 @@
                 .NewsViews
                 .AddAsync(new NewsViews { NewsId = id, UserId = userId });
 
+            await this.data.SaveChangesAsync();
+        }
+
+        public async Task<List<CommentModel>> RetrieveCommentsAsync(int newsId)
+        {
+            var comments = await this.data
+                .Comments
+                .Include(x => x.User)
+                .Where(c => c.NewsId == newsId)
+                .Select(c => new CommentModel
+                {
+                    Id = c.Id,
+                    NewsId= c.NewsId,
+                    UserId= c.UserId,
+                    FullName = c.User.FullName,
+                    Content = c.Content,
+                    Date = c.Date
+                })
+                .ToListAsync();
+
+            return comments;
+        }
+
+        public async Task AddCommentAsync(Comment comment)
+        {
+            await this.data.Comments.AddAsync(comment);
             await this.data.SaveChangesAsync();
         }
     }
