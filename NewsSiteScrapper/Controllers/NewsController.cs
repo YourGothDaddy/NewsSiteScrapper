@@ -50,8 +50,25 @@
 
             return View(viewModel);
         }
-        public async Task<IActionResult> NewsDetails(int id)
+        public async Task<IActionResult> NewsDetails(int id, int? pageNumber)
         {
+            var numberOfCommentsOnPage = ControllerConstants.NumberOfCommentsOnANewsArticle;
+            pageNumber ??= 1;
+            var allComments = await this.news.RetrieveAllCommentsCountAsync();
+
+            if(pageNumber < 1)
+            {
+                return RedirectToAction("NewsDetails", new { id = id, pageNumber = 1 });
+            }
+
+            var commentsOnThePage = await this.news.RetrieveAllCommentsForThePageAsync(id, pageNumber, numberOfCommentsOnPage);
+            var totalPages = (int)Math.Ceiling((double)allComments/ numberOfCommentsOnPage);
+
+            if (pageNumber > totalPages)
+            {
+                return RedirectToAction("NewsDetails", new { id = id, pageNumber = totalPages });
+            }
+
             var newsItem = await this.news.RetrieveNewsAsync(id);
 
             if (newsItem == null)
@@ -75,12 +92,14 @@
                 await this.news.IncrementUniqueNewsAsync(id, userId);
             }
 
-            var comments = await this.news.RetrieveCommentsAsync(id);
-
             var viewModel = new NewsDetailsViewModel
             {
                 News = newsItem,
-                Comments = comments
+                Comments = commentsOnThePage,
+                PageNumber = pageNumber.Value,
+                NumberOfCommentsOnPage = numberOfCommentsOnPage,
+                TotalCommentsCount = allComments,
+                TotalPages = totalPages
             };
 
             return View(viewModel);

@@ -18,8 +18,10 @@
 
         public Task IncrementUniqueNewsAsync(int id, string userId);
 
-        public Task<List<CommentModel>> RetrieveCommentsAsync(int newsId);
-
         public Task AddCommentAsync(Comment comment);
+
+        public Task<List<CommentModel>> RetrieveAllCommentsForThePageAsync(int newsId, int? pageNumber, int numberOfCommentsOnPage);
+
+        public Task<int> RetrieveAllCommentsCountAsync();
     }
 }

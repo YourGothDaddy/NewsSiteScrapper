@@ -91,30 +91,37 @@
             await this.data.SaveChangesAsync();
         }
 
-        public async Task<List<CommentModel>> RetrieveCommentsAsync(int newsId)
-        {
-            var comments = await this.data
-                .Comments
-                .Include(x => x.User)
-                .Where(c => c.NewsId == newsId)
-                .Select(c => new CommentModel
-                {
-                    Id = c.Id,
-                    NewsId= c.NewsId,
-                    UserId= c.UserId,
-                    FullName = c.User.FullName,
-                    Content = c.Content,
-                    Date = c.Date
-                })
-                .ToListAsync();
-
-            return comments;
-        }
-
         public async Task AddCommentAsync(Comment comment)
         {
             await this.data.Comments.AddAsync(comment);
             await this.data.SaveChangesAsync();
+        }
+
+        public async Task<List<CommentModel>> RetrieveAllCommentsForThePageAsync(int newsId, int? pageNumber, int numberOfCommentsOnPage)
+        {
+            var allComments = await this.data
+                .Comments
+                .Include(x => x.User)
+                .OrderByDescending(c => c.Date)
+                .Select(c => new CommentModel
+                {
+                    FullName = c.User.FullName,
+                    Content = c.Content
+                })
+                .Skip((pageNumber.Value - 1) * numberOfCommentsOnPage)
+                .Take(numberOfCommentsOnPage)
+                .ToListAsync();
+
+            return allComments;
+        }
+
+        public async Task<int> RetrieveAllCommentsCountAsync()
+        {
+            var totalCommentsCount = await this.data
+                .Comments
+                .CountAsync();
+
+            return totalCommentsCount;
         }
     }
 }
