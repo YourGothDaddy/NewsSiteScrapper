@@ -22,6 +22,6 @@
 
         public Task<List<CommentModel>> RetrieveAllCommentsForThePageAsync(int newsId, int? pageNumber, int numberOfCommentsOnPage);
 
-        public Task<int> RetrieveAllCommentsCountAsync();
+        public Task<int> RetrieveAllCommentsCountAsync(int newsId);
     }
 }

@@ -102,6 +102,7 @@
             var allComments = await this.data
                 .Comments
                 .Include(x => x.User)
+                .Where(c => c.NewsId == newsId)
                 .OrderByDescending(c => c.Date)
                 .Select(c => new CommentModel
                 {
@@ -115,10 +116,11 @@
             return allComments;
         }
 
-        public async Task<int> RetrieveAllCommentsCountAsync()
+        public async Task<int> RetrieveAllCommentsCountAsync(int newsId)
         {
             var totalCommentsCount = await this.data
                 .Comments
+                .Where(c => c.NewsId == newsId)
                 .CountAsync();
 
             return totalCommentsCount;

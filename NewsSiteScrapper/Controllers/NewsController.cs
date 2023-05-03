@@ -53,8 +53,11 @@
         public async Task<IActionResult> NewsDetails(int id, int? pageNumber)
         {
             var numberOfCommentsOnPage = ControllerConstants.NumberOfCommentsOnANewsArticle;
-            pageNumber ??= 1;
-            var allComments = await this.news.RetrieveAllCommentsCountAsync();
+            if (pageNumber == null)
+            {
+                pageNumber = 1;
+            }
+            var allComments = await this.news.RetrieveAllCommentsCountAsync(id);
 
             if(pageNumber < 1)
             {
@@ -64,7 +67,7 @@
             var commentsOnThePage = await this.news.RetrieveAllCommentsForThePageAsync(id, pageNumber, numberOfCommentsOnPage);
             var totalPages = (int)Math.Ceiling((double)allComments/ numberOfCommentsOnPage);
 
-            if (pageNumber > totalPages)
+            if (pageNumber > totalPages && totalPages > 0)
             {
                 return RedirectToAction("NewsDetails", new { id = id, pageNumber = totalPages });
             }
