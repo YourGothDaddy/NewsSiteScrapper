@@ -23,7 +23,10 @@
         public async Task<IActionResult> Bulgaria(int? pageNumber)
         {
             var numberOfNewsOnPage = ControllerConstants.NumberOfNewsOnAPage;
-            pageNumber ??= 1;
+            if (pageNumber == null)
+            {
+                pageNumber = 1;
+            }
             var allNews = await this.news.RetrieveAllNewsCountAsync();
 
             if (pageNumber < 1)
@@ -76,7 +79,7 @@
 
             if (newsItem == null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound");
             }
 
            
@@ -112,7 +115,7 @@
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
-                return BadRequest("User is not authenticated");
+                return RedirectToAction("NewsDetails", new { id = newsId });
             }
 
             var comment = new Comment
@@ -126,6 +129,12 @@
             await this.news.AddCommentAsync(comment);
 
             return RedirectToAction("NewsDetails", new { id = newsId });
+        }
+
+        public IActionResult NotFound()
+        {
+            return View("~/Views/Shared/NotFound.cshtml");
+
         }
 
     }
