@@ -22,115 +22,101 @@
  
         private async void Scrape(object state)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            var fileName = "lastProcessedPage.txt";
+            var lastPage = 1;
+
+            var web = new HtmlWeb();
+            var doc = new HtmlDocument();
+
+            var pageToGo = "";
+
+            var links = new List<string>();
+            var news = new List<News>();
+
+            var tooManyPagesWithoutScrapedNews = false;
+            var pagesWithoutScrapedNews = 0;
             while (true)
             {
-                var connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-NewsWebSiteScraper-ddf924d2-6eff-4e74-96c7-57e851aa0eff;Trusted_Connection=True;MultipleActiveResultSets=true";
-                using (var connection = new SqlConnection(connectionString))
+                if (File.Exists(fileName))
                 {
-                    await connection.OpenAsync();
+                    var lastProcessedPageStr = File.ReadAllText(fileName);
+                    int.TryParse(lastProcessedPageStr, out lastPage);
+                    Console.WriteLine($"Last processed page is: {lastPage}");
+                }
+                else
+                {
+                    using (File.Create(fileName)) { }
+                }
 
-                    Console.WriteLine("Connection opened");
-                    //await DeleteNewsAsync();
-                    Console.OutputEncoding = Encoding.UTF8;
+                if (lastPage > 1)
+                {
+                    doc = NavigateToWebsite(web, lastPage);
+                }
+                else
+                {
+                    doc = NavigateToWebsite(web, 1);
+                }
 
-                    var fileName = "lastProcessedPage.txt";
-                    var lastPage = 1;
-                    if (File.Exists(fileName))
+                Console.WriteLine("Went to the website");
+
+                // Get the first <a> element with class "pagination-next"
+                var nextPageLink = doc.DocumentNode.SelectSingleNode("//a[@class='pagination-next']");
+
+                while (nextPageLink != null)
+                {
+
+                    try
                     {
-                        var lastProcessedPageStr = File.ReadAllText(fileName);
-                        int.TryParse(lastProcessedPageStr, out lastPage);
-                        Console.WriteLine($"Last processed page is: {lastPage}");
-                    }
-                    else
-                    {
-                        using (File.Create(fileName)) { }
-                    }
+                        var nodes = doc.DocumentNode.SelectNodes("//div[@id='c1']/div[contains(@class, 'b2')]/div[contains(@class, 'ttl')]/a\r\n");
 
-                    var web = new HtmlWeb();
-                    var doc = new HtmlDocument();
-
-                    var timer = new Stopwatch();
-                    var pageToGo = "";
-
-                    var links = new List<string>();
-                    var news = new List<News>();
-
-                    var timerWasStopped = false;
-
-                    if (lastPage > 1)
-                    {
-                        doc = NavigateToWebsite(web, lastPage);
-                    }
-                    else
-                    {
-                        doc = NavigateToWebsite(web, 1);
-                    }
-
-                    Console.WriteLine("Went to the website");
-
-                    // Get the first <a> element with class "pagination-next"
-                    var nextPageLink = doc.DocumentNode.SelectSingleNode("//a[@class='pagination-next']");
-
-                    timer.Start();
-
-                    while (nextPageLink != null)
-                    {
-                        if (timerWasStopped)
+                        if (nodes != null)
                         {
-                            timer.Start();
-                            timerWasStopped = false;
-                        }
+                            await GoThroughEachNewsAsync(links, nodes);
+                            Console.WriteLine($"Last page is {lastPage}");
 
-                        try
-                        {
-                            var nodes = doc.DocumentNode.SelectNodes("//div[@id='c1']/div[contains(@class, 'b2')]/div[contains(@class, 'ttl')]/a\r\n");
-
-                            if (nodes != null)
+                            if (lastPage % 1 == 0)
                             {
-                                await GoThroughEachNewsAsync(links, nodes);
-                                Console.WriteLine($"Last page is {lastPage}");
+                                var newsData = await GetTheNewsDataAsync(web, links);
 
-                                if (lastPage % 1 == 0)
+                                if (newsData.Count > 0)
                                 {
-                                    var newsData = await GetTheNewsDataAsync(web, links);
-
-                                    if (newsData.Count > 0)
-                                    {
-                                        // Get the current number of connections
-                                        int count = new SqlCommand("SELECT COUNT(*) FROM sys.dm_exec_connections", connection)
-                                                        .ExecuteScalar() as int? ?? 0;
-
-                                        // Output the current number of connections
-                                        Console.WriteLine("Current number of connections: " + count);
-
-
-                                        await SaveNewsAsync(newsData);
-                                        timer.Stop();
-                                        timerWasStopped = true;
-                                        Console.WriteLine($"Saved {newsData.Count} news for {timer.Elapsed.TotalSeconds} seconds!");
-                                        timer.Reset();
-                                        Console.WriteLine("Timer was resetted!");
-                                        newsData.Clear();
-                                        links.Clear();
-                                    }
+                                    await SaveNewsAsync(newsData);
+                                    Console.WriteLine($"Saved {newsData.Count} news!");
+                                    newsData.Clear();
+                                    links.Clear();
+                                    lastPage++;
+                                    pagesWithoutScrapedNews = 0;
+                                }
+                                else
+                                {
+                                    lastPage++;
+                                    pagesWithoutScrapedNews++;
                                 }
 
-                                File.WriteAllText(fileName, lastPage.ToString());
-                                pageToGo = $"https://www.dnes.bg/news.php?last&cat=1&page={lastPage}";
-                                doc = NavigateToNextNewsPage(web, pageToGo);
-                                nextPageLink = doc.DocumentNode.SelectSingleNode("//a[@class='pagination-next']");
-                                await Task.Delay(3600000);
+                                if (pagesWithoutScrapedNews >= 10)
+                                {
+                                    tooManyPagesWithoutScrapedNews = true;
+                                    lastPage = 1;
+                                    pagesWithoutScrapedNews = 0;
+                                }
                             }
 
+                            File.WriteAllText(fileName, lastPage.ToString());
+                            pageToGo = $"https://www.dnes.bg/news.php?last&cat=1&page={lastPage}";
+                            doc = NavigateToNextNewsPage(web, pageToGo);
+                            nextPageLink = doc.DocumentNode.SelectSingleNode("//a[@class='pagination-next']");
+                            await Task.Delay(3600000);
                         }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                    }
 
-                    File.WriteAllText(fileName, "1");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
+
+                File.WriteAllText(fileName, "1");
             }
         }
 
@@ -234,7 +220,6 @@
                             Date = dateParsed,
                             ImageUrl = imageSrc
                         };
-                        Console.WriteLine($"News created with title {title}");
 
                         return currentNews;
                     }
