@@ -3,6 +3,7 @@
     using HtmlAgilityPack;
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
+    using NewsWebSiteScraper.Constants;
     using NewsWebSiteScraper.Data;
     using NewsWebSiteScraper.Data.Models;
     using System.Diagnostics;
@@ -23,7 +24,7 @@
         private async void Scrape(object state)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            var fileName = "lastProcessedPage.txt";
+            var fileName = ServiceConstants.LastProcessedPageTxtName;
             var lastPage = 1;
 
             var web = new HtmlWeb();
@@ -148,7 +149,7 @@
 
         private async Task<List<News>> GetTheNewsDataAsync(HtmlWeb web, List<string> links)
         {
-            var baseUrl = "https://www.dnes.bg";
+            var baseUrl = ServiceConstants.BaseUrl;
 
             var newsTasks = links.Select(async link =>
             {
@@ -211,7 +212,7 @@
                         }
 
                         var imageElement = doc.DocumentNode.SelectSingleNode("//div[@id='article_text']//img");
-                        var imageSrc = imageElement != null ? imageElement.Attributes["src"].Value : "https://digitalfinger.id/wp-content/uploads/2019/12/no-image-available-icon-6.png";
+                        var imageSrc = imageElement != null ? imageElement.Attributes["src"].Value : ServiceConstants.DefaultNewsArticleImage;
 
                         var currentNews = new News
                         {
@@ -283,7 +284,7 @@
  
         private string RemoveHtmlTags(string html)
         {
-            var pattern = @"<(?!strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>|/strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>)([^>]*)>|</(?!strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>|/strong(?:\s*(?!\s*\b(id|class)\b)[^>]*)?>)[^>]*>";
+            var pattern = ServiceConstants.RegexPatternToRemoveHtmlTags;
  
             var strippedHtml = Regex.Replace(html, pattern, "");
  

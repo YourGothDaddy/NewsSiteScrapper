@@ -84,7 +84,6 @@
             Console.WriteLine(userId);
             if (userId == null)
             {
-                Console.WriteLine("We should not be here!");
                 userId = HttpContext.Connection.RemoteIpAddress.ToString();
             }
 
