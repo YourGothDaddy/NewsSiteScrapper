@@ -5,29 +5,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <h1 id="most-recent-news-heading">НАЙ-НОВИТЕ НОВИНИ</h1>
-    <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-6 g-3">
-        @foreach (var newsItem in Model.News)
-        {
-            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-2">
-                <a href="@Url.Action("NewsDetails", "News", new { id = newsItem.Id })" class="card mb-4 shadow-sm h-100 text-dark">
-                    <div class="ratio ratio-16x9">
-                        <img src="@newsItem.ImageUrl" class="card-img-top rounded-0" alt="News Image">
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">@newsItem.Date?.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("bg-BG"))</small>
+@if(!(Model.News.Count <= 0))
+{
+    <div class="container">
+        <h1 id="most-recent-news-heading">НАЙ-НОВИТЕ НОВИНИ</h1>
+        <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-6 g-3">
+            @foreach (var newsItem in Model.News)
+            {
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-2">
+                    <a href="@Url.Action("NewsDetails", "News", new { id = newsItem.Id })" class="card mb-4 shadow-sm h-100 text-dark">
+                        <div class="ratio ratio-16x9">
+                            <img src="@newsItem.ImageUrl" class="card-img-top rounded-0" alt="News Image">
                         </div>
-                        <h5 class="card-title">@newsItem.Title</h5>
-                    </div>
-                </a>
-            </div>
-        }
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">@newsItem.Date?.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("bg-BG"))</small>
+                            </div>
+                            <h5 class="card-title">@newsItem.Title</h5>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
     </div>
-</div>
 
-<div class="container mt-4">
+    <div class="container mt-4">
     <h1 id="most-recent-news-heading">НАЙ-ЧЕТЕНИТЕ НОВИНИ</h1>
     <div class="row row-cols-1 row-cols-lg-3 row-cols-xl-6 g-3">
         @foreach (var newsItem in Model.MostViewedNews)
@@ -48,5 +50,12 @@
         }
     </div>
 </div>
+}
+else
+{
+    <div class="container">
+        <h1 id="most-recent-news-heading">Няма налични новини!</h1>
+    </div>
+}
 
 

@@ -45,6 +45,10 @@ li{
     background-color: #009ad1;
 }
 
+.nav-item{
+    color:white;
+}
+
 #nav-pagination{
     margin-top:1.5rem;
 }
@@ -97,6 +101,10 @@ a {
     a:hover {
         color: black;
     }
+
+#logout-button{
+    border:none;
+}
 
 /*Identity Area*/
 .form-floating{

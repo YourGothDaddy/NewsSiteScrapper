@@ -84,7 +84,6 @@
 
            
             var userId = HttpContext.User.Identity.Name;
-            Console.WriteLine(userId);
             if (userId == null)
             {
                 userId = HttpContext.Connection.RemoteIpAddress.ToString();
